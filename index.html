@@ -14,7 +14,7 @@
         ul.news li {list-style:none;}
         span.date {font-style: italic; padding-right: 10px;}
         .comic {font-family: 'Ceviche One', cursive;}
-        pre { font-family: 'Inconsolata', sans-serif; border:1px solid #ccc;padding:1em;font-size: 11pt;width:890px;}
+        pre { font-family: 'Inconsolata', sans-serif; border:1px solid #ccc;padding:1em;font-size: 11pt;display:inline-block;}
         small {display:block;font-size: 8pt; color:#aaa;margin-bottom:10px;}
         </style>
     </head>
@@ -27,6 +27,7 @@
                 <h1><span class="comic">Bearwall</span><small>-- Because you can jump through fire but you can't jump through a bear</span></small></h1>
                 <h3>News</h3>
                 <ul class="news">
+                    <li><span class="date">2020-04-09</span> Bearwall 2.00 released</li>
                     <li><span class="date">2016-02-27</span> Bearwall 1.11 released</li>
                     <li><span class="date">2015-12-22</span> Bearwall 1.10 released</li>
                     <li><span class="date">2013-12-09</span> Bearwall 1.09 released</li>
@@ -35,22 +36,26 @@
                 </ul>
 
                 <h3>About</h3>
-                <p>Welcome to the home of the firewall builder script Bearwall.</p>
-                <p>Bearwall allows you to write firewall rules once and have them translated to ipv4 and ipv6 policy using iptables and ip6tables.</p>
-                <p>Documentation on bearwall can be found on our <a href="https://github.com/bearwall-firewall/bearwall2/wiki">github wiki</a>.</p>
+                <p>Welcome to the home of the firewall builder for configuring a dual-stack nftables firewall.</p>
+                <p>Bearwall is a firewall builder that allows you to easily manage complex security policy on a linux host by separating your policies into reusable classes and rulesets.</p>
+                <p>Bearwall reads in your firewall policy, defined in Bash, and generates the appropriate nftables chains and rules to implement consistent policy for a dual-stacked host.</p>
+
+                <h3>Documentation</h3>
+                <p>Documentation for bearwall can be found on our <a href="https://github.com/bearwall-firewall/bearwall2/wiki">github wiki</a>.</p>
 
                 <h3>Bugs/Feature Requests</h3>
                 <p>Please create bugs and feature requests on our <a href="https://github.com/bearwall-firewall/bearwall2/issues">github issue tracker</a>.</p>
 
                 <h3>Download</h3>
-                <p>Bearwall source is supplied <a href="https://github.com/bearwall-firewall/bearwall2/archive/master.zip">here</a> for download. Read the <a href="https://github.com/bearwall-firewall/bearwall2/releases">changelog</a> to work out what we added/fixed.</p>
-                <p>We also supply a Debian &amp; Ubuntu repository for keeping up to date with the latest version of bearwall. Enabling the bearwall repository in Debian/Ubuntu:</p>
+                <p>The latest version as well as release notes can be found on the <a href="https://github.com/bearwall-firewall/bearwall2/releases">github release page</a>.</p>
+                <p>We also supply a Debian &amp; Ubuntu repository for keeping up to date with the latest version of bearwall.</p>
+                <p>Enabling the bearwall repository in Debian/Ubuntu:</p>
 <pre>
-sudo apt-get install apt-transport-https
-echo "deb https://packages.bearwall.org $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/bearwall.list
-sudo curl https://packages.bearwall.org/keyring.gpg -o /etc/apt/trusted.gpg.d/bearwall.gpg
+sudo apt-get install apt-transport-https curl lsb-release
+echo "deb https://dl.bintray.com/bearwall/bearwall2 $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/bearwall2.list
+curl --silent "https://bintray.com/user/downloadSubjectPublicKey?username=bearwall" | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install bearwall
+sudo apt-get install bearwall2
 </pre>
             </article>
         </div>
