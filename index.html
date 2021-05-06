@@ -52,8 +52,8 @@
                 <p>Enabling the bearwall repository in Debian/Ubuntu:</p>
 <pre>
 sudo apt-get install apt-transport-https curl lsb-release
-echo "deb https://dl.bintray.com/bearwall/bearwall2 $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/bearwall2.list
-curl --silent "https://bintray.com/user/downloadSubjectPublicKey?username=bearwall" | sudo apt-key add -
+sudo curl -1sLf https://dl.cloudsmith.io/public/bearwall/bearwall2/gpg.26EA35E7A5ED1FFE.key -o /etc/apt/trusted.gpg.d/bearwall2.asc
+curl -1sLf "https://dl.cloudsmith.io/public/bearwall/bearwall2/config.deb.txt?distro=$(lsb_release -is)&codename=$(lsb_release -sc)" | sudo tee /etc/apt/sources.list.d/bearwall2.list
 sudo apt-get update
 sudo apt-get install bearwall2
 </pre>
