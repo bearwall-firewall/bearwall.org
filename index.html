@@ -50,9 +50,9 @@
                 <p>We also supply a Debian &amp; Ubuntu repository for keeping up to date with the latest version of bearwall.</p>
                 <p>Enabling the bearwall repository in Debian/Ubuntu:</p>
 <pre>
-sudo apt-get install apt-transport-https curl lsb-release
-sudo curl -1sLf https://dl.cloudsmith.io/public/bearwall/bearwall2/gpg.26EA35E7A5ED1FFE.key -o /etc/apt/trusted.gpg.d/bearwall2.asc
-curl -1sLf "https://dl.cloudsmith.io/public/bearwall/bearwall2/config.deb.txt?distro=$(lsb_release -is)&codename=$(lsb_release -sc)" | sudo tee /etc/apt/sources.list.d/bearwall2.list
+sudo apt-get install apt-transport-https curl lsb-release gnupg
+curl -1sLf https://dl.cloudsmith.io/public/bearwall/bearwall2/gpg.26EA35E7A5ED1FFE.key | sudo gpg --dearmor -o /usr/share/keyrings/bearwall2.gpg
+echo "deb [signed-by=/usr/share/keyrings/bearwall2.gpg] https://dl.cloudsmith.io/public/bearwall/bearwall2/deb/$(lsb_release -is | awk '{print tolower($0)}') $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/bearwall2.list
 sudo apt-get update
 sudo apt-get install bearwall2
 </pre>
